@@ -5,10 +5,23 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./styles/main.js">
+    <link rel="stylesheet" href="./styles/main.css">
   </head>
   <body>
-    <h1>hello world</h1>
+    <div id="app">
+      <header class="header">
+        <h1 class="header__title">Todo app</h1>
+      </header>
+      <main class="main">
+        <h2>Add todos</h2>
+        <form class="todo-form">
+          <input type="text" name="todo" placeholder="todo"/>
+          <input type="submit" value="add todo"/>
+        </form>
+        <h2>Todo list</h2>
+        <section class="todo-list"></section>
+      </main>
+    </div>
     <script src="./js/main.js"></script>
   </body>
 </html>
