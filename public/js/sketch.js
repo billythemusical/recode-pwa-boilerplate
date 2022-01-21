@@ -25,7 +25,7 @@ function setup () {
   
   // To simulate temperature changes
   tempSlider = createSlider(0, 100, 20, 1)
-  tempSlider.position(200, 20)
+  tempSlider.position(10, 180)
   tempSlider.elt.oninput = newTempInput
   // tempSlider.elt.addEventListener("touchstart", newTempInput)
 
