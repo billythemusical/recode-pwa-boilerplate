@@ -5,7 +5,6 @@ let dev = true;
 // 	slider.style.display = "none"
 // }
 
-let newTempInput;
 let clothes;
 let outfit;
 let city = "New York"
@@ -22,22 +21,25 @@ let bt; // big temp display
 function setup () {
   // Create the canvas
    createCanvas(windowWidth, windowHeight);
+  
+  // To simulate temperature changes
+  tempSlider = createSlider(0, 100, 20, 1)
+  tempSlider.position(20, 20)
+  tempSlider.oninput = newTempInput
 
   // Setting up our text box
   tb = createDiv(temp);
   tb.style("font-family", "Courier");
   tb.style("font-size", "15px");
-  tb.position(width * 0.05, height * 0.05);
+  tb.position(20, 40);
   tb.size(500, 500);
 
   // Setting up our temp box
   bt= createDiv(temp);
   bt.style("font-family", "Arial");
   bt.style("font-size", "130px");
-  bt.position(width * 0.05, height * 0.1);
+  bt.position(20, 50);
   bt.size(500, 500);
-  
-  tempSlider = createSlider(0, 100, 20, 1)
 
   // Get the clothes out of the closet
   clothes = closet();
@@ -57,7 +59,7 @@ function windowResized () {
 }
 
 const checkWeather = async () => {
-  // try {
+  try {
     // Get the weather from our server
     const options = {
       method: 'POST',
@@ -69,11 +71,15 @@ const checkWeather = async () => {
     let data = await fetch('/weather', options)
     data = await data.json()
     console.log('got data from /weather', data)
+    
     if (data.weather && data.main) {
+      
       temp = parseInt(data.main["temp"])
       tempMin = parseInt(data.main["temp_min"])
       tempMax = parseInt(data.main["temp_max"])
+      
       weather = data.weather[0]
+      
       console.log('weather id: ', weather.id)
       console.log('weather descritpion: ', weather.description)
       console.log("Got the weather", temp + 'º F')
@@ -89,10 +95,10 @@ const checkWeather = async () => {
       
     }
 
-  // } catch (e) {
-    // console.log("Error: ", e)
-    // return false
-  // }
+  } catch (e) {
+    console.log("Error: ", e)
+    return false
+  }
 }
 
 const displayWeather = async () => {
@@ -168,8 +174,9 @@ const getDressed = () => {
   }
 }
 
-newTempInput = (e) => {
-  temp = Math.floor(Math.abs(e.value))
+const newTempInput = (e) => {
+  // temp = Math.floor(Math.abs(e.value))
+  temp = tempSlider.value()
   pickOutfit()
   console.log('Change clothes!')
 }
