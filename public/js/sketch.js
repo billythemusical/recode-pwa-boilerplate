@@ -63,7 +63,6 @@ const checkWeather = async () => {
     data = await data.json()
     console.log('got data from /weather', data)
     if (data.weather && data.main) {
-      
       temp = data.main["temp"]
       tempMin = data.main["temp_min"]
       tempMax = data.main["temp_max"]
@@ -89,9 +88,7 @@ const checkWeather = async () => {
 
 const displayWeather = async () => {
   
-  console.log('gotWeather?', gotWeather)
-  
-  if(gotWeather.value) {
+  if(weather && temp) {
     let info = ''
     info += city + '<br>'
     info += tempMin + 'º to ' + tempMax + 'º F<br>'
@@ -99,6 +96,8 @@ const displayWeather = async () => {
     tb.html(info) // update the text box
     bt.html(temp + 'º') // Uudate big temp display
   }
+  
+  
 
 }
 
