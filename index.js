@@ -20,9 +20,16 @@ mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 const todos = require('./models/todo');
 
 // Setting up the Open Weather API calls
-const ow_params
-const api_key = "&appid=config.OW_API_KEY
-const weather_url = "http://api.openweathermap.org/data/2.5/weather?q=New%20York&units=imperial&appid="
+let city = "New York"
+const owApiKey = config.OW_API_KEY
+const owParams = new URLSearchParams({
+  q: city,
+  units: "imperial",
+  appid: owApiKey
+})
+const owUrl = new URL('http://api.openweathermap.org/data/2.5/weather', owParams)
+fetch(owURL)
+
 
 // Handle data in a nice way
 app.use(bodyParser.urlencoded({extended: true}));
