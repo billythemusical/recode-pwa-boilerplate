@@ -11,5 +11,5 @@
   ],
   "name": "Dress 4 the Weather",
   "short_name": "d4w",
-  "start_url": "/views/index.html"
+  "start_url": "/"
 }

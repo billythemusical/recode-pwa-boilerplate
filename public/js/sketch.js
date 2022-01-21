@@ -5,7 +5,7 @@ and https://github.com/mdn/pwa-examples/blob/master/a2hs/index.js */
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
-    .register('/pwa-examples/a2hs/sw.js')
+    .register('/js/sw.js')
     .then(() => { console.log('Service Worker Registered'); });
 }
 
