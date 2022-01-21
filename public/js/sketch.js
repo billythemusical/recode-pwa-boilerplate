@@ -37,7 +37,7 @@ function setup () {
   bt.size(500, 500);
 
   // Get the clothes out of the closet
-  clothes = closet(p);
+  clothes = closet();
 
   // Check the weather and let everyone know if we did
   gotWeather = checkWeather();
@@ -49,122 +49,117 @@ function draw () {
   getDressed();
 };
 
-function windowResized () => {
-		p.resizeCanvas(p.windowWidth, p.windowHeight);
-	}
-
-	const checkWeather = async () => {
-		try {
-			let apiKey = "2f60ed4cfa911d3aaea5e3418a10bf74"
-			let url = "http://api.openweathermap.org/data/2.5/weather?q=New%20York&units=imperial&appid=" + apiKey
-			let response = await fetch(url) //, { credentials: "same-origin" })
-			let data = await response.json()
-			// These may come in as strings so we put them into integers
-			temp = parseInt(data.main["temp"])
-			tempMin = parseInt(data.main["temp_min"])
-			tempMax = parseInt(data.main["temp_max"])
-			weather = data.weather[0]
-			console.log('weather id: ', weather.id)
-			console.log('weather descritpion: ', weather.description)
-
-			console.log("Got the weather", temp + 'º F')
-
-			// Now...
-			pickOutfit();
-			document.getElementById('tempSlider').value = temp;
-			console.log('setting the temp slider value')
-
-			return true
-
-		} catch (e) {
-			console.log("Error: ", e)
-			return false
-		}	
-		
-	}
-
-	const displayWeather = async () => {
-		// Display all the stuff we want to display
-		// p.text("New York", 10, 20);
-		// p.text(tempMin + "º to " + tempMax + "º F", 10, 40);
-		// p.text("Currently " + temp + "º F and " + weather, 10, 60);
-
-		if(gotWeather) {
-			let info = ''
-			info += city + '<br>'
-			info += tempMin + 'º to ' + tempMax + 'º F<br>'
-			info += 'Currently ' + temp + 'º F and ' + weather.description
-			tb.html(info)
-
-			bt.html(temp + 'º')
-		}
-
-	}
-
-	const pickOutfit = () => {
-
-		outfit = []
-
-		switch (true) {
-			case temp < 30:
-				outfit = ["beanie", "parka", "snow-pants", "gloves", "scarf"]
-				break
-			case temp < 40:
-				outfit = ["beanie", "parka", "jeans", "scarf"]
-				break
-			case temp < 50:
-				outfit = ["jacket", "jeans", "scarf"]
-				break
-			case temp < 65:
-				outfit = ["jacket", "jeans"]
-				break
-			case temp < 80:
-				outfit = ["tshirt", "jeans"]
-				break
-			case temp < 90:
-				outfit = ["tshirt", "shorts"]
-				break
-			case temp >= 90 && temp < 100:
-				outfit = ["tank-top", "shorts", "flip-flops"]
-				break
-			case temp === 100:
-				outfit = ["tank-top", "shorts", "flip-flops", "sunglasses,", "umbrella"]
-				break
-		}
-
-		switch (true) {
-			case weather.id >= 200 && weather.id < 600:
-				outfit.push('umbrella')
-				break
-			case weather.id == 800 && temp > 50:
-				outfit.push('sunglasses')
-				break
-		}
-
-		console.log('Picked outfit')
-		if(outfit) outfit.forEach(o => console.log(o))
-	}
-
-	const getDressed = () => {
-		if(clothes && outfit) {
-			// Look through all our clothes
-			for (let c of clothes) {
-				// if the outfit calls for a piece of clothing
-				if (outfit.includes(c.name)) {
-					// display that piece of clothing
-					p.image(c.image, 0, 0)
-					// console.log("outfit: ", c.name, c.image)
-				}
-			}
-		}
-	}
-
-	newTempInput = (e) => {
-		temp = Math.floor(Math.abs(e.value))
-		pickOutfit()
-		console.log('Change clothes!')
-	}
+function windowResized () {
+		resizeCanvas(windowWidth, windowHeight);
 }
+
+const checkWeather = async () => {
+  try {
+    let apiKey = "2f60ed4cfa911d3aaea5e3418a10bf74"
+    let url = "http://api.openweathermap.org/data/2.5/weather?q=New%20York&units=imperial&appid=" + apiKey
+    let response = await fetch(url) //, { credentials: "same-origin" })
+    let data = await response.json()
+    // These may come in as strings so we put them into integers
+    temp = parseInt(data.main["temp"])
+    tempMin = parseInt(data.main["temp_min"])
+    tempMax = parseInt(data.main["temp_max"])
+    weather = data.weather[0]
+    console.log('weather id: ', weather.id)
+    console.log('weather descritpion: ', weather.description)
+
+    console.log("Got the weather", temp + 'º F')
+
+    // Now...
+    pickOutfit();
+    document.getElementById('tempSlider').value = temp;
+    console.log('setting the temp slider value')
+
+    return true
+
+  } catch (e) {
+    console.log("Error: ", e)
+    return false
+  }	
+
+}
+
+const displayWeather = async () => {
+  
+  if(gotWeather) {
+    let info = ''
+    info += city + '<br>'
+    info += tempMin + 'º to ' + tempMax + 'º F<br>'
+    info += 'Currently ' + temp + 'º F and ' + weather.description
+    tb.html(info) // update the text box
+    bt.html(temp + 'º') // Uudate big temp display
+  }
+
+}
+
+const pickOutfit = () => {
+
+  outfit = []
+
+  switch (true) {
+    case temp < 30:
+      outfit = ["beanie", "parka", "snow-pants", "gloves", "scarf"]
+      break
+    case temp < 40:
+      outfit = ["beanie", "parka", "jeans", "scarf"]
+      break
+    case temp < 50:
+      outfit = ["jacket", "jeans", "scarf"]
+      break
+    case temp < 65:
+      outfit = ["jacket", "jeans"]
+      break
+    case temp < 80:
+      outfit = ["tshirt", "jeans"]
+      break
+    case temp < 90:
+      outfit = ["tshirt", "shorts"]
+      break
+    case temp >= 90 && temp < 100:
+      outfit = ["tank-top", "shorts", "flip-flops"]
+      break
+    case temp === 100:
+      outfit = ["tank-top", "shorts", "flip-flops", "sunglasses,", "umbrella"]
+      break
+  }
+
+  switch (true) {
+    case weather.id >= 200 && weather.id < 600:
+      outfit.push('umbrella')
+      break
+    case weather.id == 800 && temp > 50:
+      outfit.push('sunglasses')
+      break
+  }
+
+  console.log('Picked outfit')
+  if(outfit) outfit.forEach(o => console.log(o))
+}
+
+const getDressed = () => {
+  if(clothes && outfit) {
+    // Look through all our clothes
+    for (let c of clothes) {
+      // if the outfit calls for a piece of clothing
+      if (outfit.includes(c.name)) {
+        // display that piece of clothing
+        image(c.img, 0, 0)
+        // console.log("outfit: ", c.name, c.image)
+      }
+    }
+  }
+}
+
+newTempInput = (e) => {
+  temp = Math.floor(Math.abs(e.value))
+  pickOutfit()
+  console.log('Change clothes!')
+}
+
 
 /*
 {
