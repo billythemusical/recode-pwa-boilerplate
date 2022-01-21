@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const config = require('./config');
+const { URL, URLSearchParams } = require('url');
 
 const PORT = config.PORT;
 
@@ -17,6 +18,11 @@ mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 
 // --- connect to your collection ---
 const todos = require('./models/todo');
+
+// Setting up the Open Weather API calls
+const ow_params
+const api_key = "&appid=config.OW_API_KEY
+const weather_url = "http://api.openweathermap.org/data/2.5/weather?q=New%20York&units=imperial&appid="
 
 // Handle data in a nice way
 app.use(bodyParser.urlencoded({extended: true}));
