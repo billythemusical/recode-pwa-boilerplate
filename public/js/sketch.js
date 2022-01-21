@@ -61,20 +61,25 @@ const checkWeather = async () => {
     };
     let data = await fetch('/weather', options)
     data = await data.json()
-    temp = data.main["temp"]
-    tempMin = data.main["temp_min"]
-    tempMax = ata.main["temp_max"]
-    weather = data.weather[0]
-    console.log('weather id: ', weather.id)
-    console.log('weather descritpion: ', weather.description)
-    console.log("Got the weather", temp + 'º F')
+    console.log('got data from /weather', data)
+    if (data.weather && data.main) {
+      
+      temp = data.main["temp"]
+      tempMin = data.main["temp_min"]
+      tempMax = data.main["temp_max"]
+      weather = data.weather[0]
+      console.log('weather id: ', weather.id)
+      console.log('weather descritpion: ', weather.description)
+      console.log("Got the weather", temp + 'º F')
 
-    // Now...
-    pickOutfit();
-    document.getElementById('tempSlider').value = temp;
-    console.log('setting the temp slider value')
-
-    return true // for setting gotWeather
+      // Now...
+      pickOutfit();
+      document.getElementById('tempSlider').value = temp;
+      console.log('setting the temp slider value')
+      
+      return true // for setting gotWeather
+      
+    }
 
   } catch (e) {
     console.log("Error: ", e)
@@ -84,7 +89,9 @@ const checkWeather = async () => {
 
 const displayWeather = async () => {
   
-  if(gotWeather) {
+  console.log('gotWeather?', gotWeather)
+  
+  if(gotWeather.value) {
     let info = ''
     info += city + '<br>'
     info += tempMin + 'º to ' + tempMax + 'º F<br>'
