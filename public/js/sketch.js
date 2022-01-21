@@ -33,7 +33,7 @@ function setup () {
   tb.style("font-family", "Courier");
   tb.style("font-size", "15px");
   tb.position(20, 20);
-  tb.size(500, 500);
+  tb.size(200, 200);
 
   // Setting up our temp box
   bt= createDiv(temp);
