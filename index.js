@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const fetch = require('node-fetch');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -23,13 +24,17 @@ const todos = require('./models/todo');
 let city = "New York"
 const owApiKey = config.OW_API_KEY
 const owParams = new URLSearchParams({
-  q: city.toString(),
+  q: city,
   units: "imperial",
   appid: owApiKey
 })
 const owUrl = new URL('http://api.openweathermap.org/data/2.5/weather')
 owUrl.search = owParams
-http.request(owURL).then(r => r.json()).then(c => console.log(c))
+let weather = async () {
+  let w
+  await fetch(owUrl).then(r => r.json()).then(c => console.log(c))
+  return w
+}
 
 
 // Handle data in a nice way
