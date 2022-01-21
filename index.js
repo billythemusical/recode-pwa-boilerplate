@@ -21,7 +21,7 @@ mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 const todos = require('./models/todo');
 
 // --- Open Weather API ---
-const apiKey = 
+const owApiKey = config.OW_API_KEY
 
 
 // Handle data in a nice way
@@ -54,9 +54,22 @@ app.get("/api/v1/todos", async (req, res) => {
 // GET: "/weather"
 app.get("weather", async (req, res) => {
   try{
-    
-    const data = await todos.find();
+    let city;
+    if (req.body.city) {
+      city = req.body.city
+    } else if (req.body.coords) {
+      city = req.body.coords
+    }
+    const owUrl = "http://api.openweathermap.org/data/2.5/weather"
+    const owParams = new URLSearchParams ({
+      q: city.JSONStringify(),
+        units: "imperial",
+          appid: owApiKey
+    })
+    owUrl.search = owParams
+    const data = await fetch(owUrl);
     res.json(data);
+    
   } catch(error){
     console.error(error);
     res.json(error);
