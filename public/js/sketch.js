@@ -67,9 +67,9 @@ const checkWeather = async () => {
     data = await data.json()
     console.log('got data from /weather', data)
     if (data.weather && data.main) {
-      temp = data.main["temp"]
-      tempMin = data.main["temp_min"]
-      tempMax = data.main["temp_max"]
+      temp = parseInt(data.main["temp"])
+      tempMin = parseInt(data.main["temp_min"])
+      tempMax = parseInt(data.main["temp_max"])
       weather = data.weather[0]
       console.log('weather id: ', weather.id)
       console.log('weather descritpion: ', weather.description)
