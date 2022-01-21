@@ -22,6 +22,7 @@ const todos = require('./models/todo');
 
 // --- Open Weather API ---
 const owApiKey = config.OW_API_KEY
+console.log(owApiKey)
 
 
 // Handle data in a nice way
@@ -52,11 +53,12 @@ app.get("/api/v1/todos", async (req, res) => {
 });
 
 // GET: "/weather"
-app.get("weather", async (req, res) => {
+app.get("/weather", async (req, res) => {
+  console.log('got a weather request')
   try{
     
-    const owUrl = "http://api.openweathermap.org/data/2.5/weather"
-    const owParams = new URLSearchParams ({
+    let owUrl = "http://api.openweathermap.org/data/2.5/weather"
+    let owParams = new URLSearchParams ({
         units: "imperial",
           appid: owApiKey
     })
@@ -69,9 +71,10 @@ app.get("weather", async (req, res) => {
       owParams.lon = `lon=${lon}`
     }
     owUrl.search = owParams
-    const data = await fetch(owUrl);
+    let data = await fetch(owUrl);
+    data = await data.json()
     res.json(data);
-    console.log('weather response:', res)
+    console.log('weather response:', data)
     
   } catch(error){
     console.error(error);

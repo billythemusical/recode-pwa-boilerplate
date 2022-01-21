@@ -57,7 +57,11 @@ const checkWeather = async () => {
   try {
     // Get the weather from our server
     const options = {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({"city": "New York"})
     };
     let data = await fetch('/weather', options)
     data = await data.json()
