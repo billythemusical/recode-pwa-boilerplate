@@ -33,14 +33,14 @@ function setup () {
   tb.style("font-family", "Courier");
   tb.style("font-size", "15px");
   tb.position(20, 20);
-  tb.size(200, 200);
+  tb.size(windowWidth, windowHeight);
 
   // Setting up our temp box
   bt= createDiv(temp);
   bt.style("font-family", "Arial");
   bt.style("font-size", "110px");
   bt.position(10, 60);
-  bt.size(500, 500);
+  bt.size(windowWidth, windowHeight);
 
   // Get the clothes out of the closet
   clothes = closet();
@@ -56,7 +56,10 @@ function draw () {
 };
 
 function windowResized () {
-		resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, windowHeight);
+  tb.size(windowWidth, windowHeight);
+  bt.size(windowWidth, windowHeight);
+
 }
 
 const checkWeather = async () => {
