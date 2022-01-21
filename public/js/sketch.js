@@ -55,8 +55,18 @@ function windowResized () {
 
 const checkWeather = async () => {
   try {
-    let apiKey = "2f60ed4cfa911d3aaea5e3418a10bf74"
-    let url = "http://api.openweathermap.org/data/2.5/weather?q=New%20York&units=imperial&appid=" + apiKey
+    async deleteTodo(id) {
+    try {
+      const options = {
+        method: 'DELETE'
+      };
+      let data = await fetch(this.baseurl + `/${id}`, options);
+      data = await data.json();
+      this.updateTodos();
+    } catch (error) {
+      console.error(error);
+    }
+  }
     let response = await fetch(url) //, { credentials: "same-origin" })
     let data = await response.json()
     // These may come in as strings so we put them into integers
