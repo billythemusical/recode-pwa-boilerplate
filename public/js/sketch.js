@@ -25,22 +25,23 @@ function setup () {
   
   // To simulate temperature changes
   tempSlider = createSlider(0, 100, 20, 1)
-  tempSlider.position(300, 20)
+  tempSlider.position(200, 20)
   tempSlider.elt.oninput = newTempInput
+  // tempSlider.elt.addEventListener("touchstart", newTempInput)
 
   // Setting up our text box
   tb = createDiv(temp);
   tb.style("font-family", "Courier");
   tb.style("font-size", "15px");
   tb.position(20, 20);
-  tb.size(windowWidth, windowHeight);
+  // tb.size(windowWidth, windowHeight);
 
   // Setting up our temp box
   bt= createDiv(temp);
   bt.style("font-family", "Arial");
   bt.style("font-size", "110px");
   bt.position(10, 60);
-  bt.size(windowWidth, windowHeight);
+  // bt.size(windowWidth, windowHeight);
 
   // Get the clothes out of the closet
   clothes = closet();
