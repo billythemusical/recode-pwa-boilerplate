@@ -162,5 +162,4 @@ window.addEventListener('DOMContentLoaded', async () => {
   const todos = new Todos();
 
   await todos.init()
-    .then(response => location.reload())
 });

@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 // read in the URI to our MongoDB Atlas 
 const MONGODB_URI = config.MONGODB_URI;
 // Use mongoose to connect to our MongoDB Atlas server
-mongoose.connect(MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 
 // --- connect to your collection ---
 const todos = require('./models/todo');
