@@ -13,7 +13,7 @@ let gotWeather = false
 let temp = "Waiting..."
 let tempMin = ""
 let tempMax = ""
-let weather = ""
+let weather;
 
 let tb; // text box
 let bt; // big temp display
@@ -55,28 +55,18 @@ function windowResized () {
 
 const checkWeather = async () => {
   try {
-    async deleteTodo(id) {
-    try {
-      const options = {
-        method: 'DELETE'
-      };
-      let data = await fetch(this.baseurl + `/${id}`, options);
-      data = await data.json();
-      this.updateTodos();
-    } catch (error) {
-      console.error(error);
-    }
-  }
-    let response = await fetch(url) //, { credentials: "same-origin" })
-    let data = await response.json()
-    // These may come in as strings so we put them into integers
-    temp = parseInt(data.main["temp"])
-    tempMin = parseInt(data.main["temp_min"])
-    tempMax = parseInt(data.main["temp_max"])
+    const options = {
+      method: 'GET'
+    };
+    let data = await fetch('/weather', options)
+    data = await data.json()
+    
+    temp = data.main["temp"]
+    tempMin = data.main["temp_min"]
+    tempMax = ata.main["temp_max"]
     weather = data.weather[0]
     console.log('weather id: ', weather.id)
     console.log('weather descritpion: ', weather.description)
-
     console.log("Got the weather", temp + 'º F')
 
     // Now...
@@ -84,13 +74,12 @@ const checkWeather = async () => {
     document.getElementById('tempSlider').value = temp;
     console.log('setting the temp slider value')
 
-    return true
+    return true // for setting gotWeather
 
   } catch (e) {
     console.log("Error: ", e)
     return false
-  }	
-
+  }
 }
 
 const displayWeather = async () => {
