@@ -1,0 +1,15 @@
+{
+  "background_color": "rgb(200, 200, 200)",
+  "description": "Dress for the weather - we'll help!",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "https://cdn.glitch.global/03796fc2-c550-441d-9435-01df882dc421/d4w.png?v=1642802570401",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "name": "Dress 4 the Weather",
+  "short_name": "d4w",
+  "start_url": "/"
+}
