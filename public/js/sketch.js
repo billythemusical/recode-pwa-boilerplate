@@ -54,14 +54,14 @@ function windowResized () {
 }
 
 const checkWeather = async () => {
-  try {
+  // try {
     // Get the weather from our server
     const options = {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({"city": "New York"})
+      body: JSON.stringify({"city": city})
     };
     let data = await fetch('/weather', options)
     data = await data.json()
@@ -84,10 +84,10 @@ const checkWeather = async () => {
       
     }
 
-  } catch (e) {
-    console.log("Error: ", e)
-    return false
-  }
+  // } catch (e) {
+    // console.log("Error: ", e)
+    // return false
+  // }
 }
 
 const displayWeather = async () => {

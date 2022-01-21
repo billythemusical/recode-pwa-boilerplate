@@ -22,7 +22,7 @@ const todos = require('./models/todo');
 
 // --- Open Weather API ---
 const owApiKey = config.OW_API_KEY
-console.log(owApiKey)
+// console.log(owApiKey)
 
 
 // Handle data in a nice way
@@ -52,25 +52,28 @@ app.get("/api/v1/todos", async (req, res) => {
   }
 });
 
-// GET: "/weather"
-app.get("/weather", async (req, res) => {
+// POST: "/weather"
+app.post("/weather", async (req, res) => {
   console.log('got a weather request')
   try{
     
     let owUrl = "http://api.openweathermap.org/data/2.5/weather"
     let owParams = new URLSearchParams ({
         units: "imperial",
-          appid: owApiKey
+        appid: owApiKey,
+        q: "New York"  
     })
+    let owUrl = "http://api.openweathermap.org/data/2.5/weather?q=New York&appid="+owApiKey
+
     // Check if the request has a city or coordinates
-    if (req.body.city) {
-      owParams.q = req.body.city
-    } else if (req.body.coords) {
-      let {lat, lon} = req.body.coords
-      owParams.lat = `lat=${lat}`
-      owParams.lon = `lon=${lon}`
-    }
-    owUrl.search = owParams
+    // if (req.body.city) {
+    //   owParams.q = req.body.city
+    // } else if (req.body.coords) {
+    //   let {lat, lon} = req.body.coords
+    //   owParams.lat = `lat=${lat}`
+    //   owParams.lon = `lon=${lon}`
+    // }
+    // owUrl.search = owParams
     let data = await fetch(owUrl);
     data = await data.json()
     res.json(data);
