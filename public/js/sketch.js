@@ -20,25 +20,26 @@ let bt; // big temp display
 
 function setup () {
   // Create the canvas
-   createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight);
+  imageMode(CENTER);
   
   // To simulate temperature changes
   tempSlider = createSlider(0, 100, 20, 1)
   tempSlider.position(20, 20)
-  tempSlider.oninput = newTempInput
+  tempSlider.oninput = newTempInput()
 
   // Setting up our text box
   tb = createDiv(temp);
   tb.style("font-family", "Courier");
   tb.style("font-size", "15px");
-  tb.position(20, 40);
+  tb.position(20, 60);
   tb.size(500, 500);
 
   // Setting up our temp box
   bt= createDiv(temp);
   bt.style("font-family", "Arial");
   bt.style("font-size", "130px");
-  bt.position(20, 50);
+  bt.position(20, 100);
   bt.size(500, 500);
 
   // Get the clothes out of the closet
@@ -79,6 +80,10 @@ const checkWeather = async () => {
       tempMax = parseInt(data.main["temp_max"])
       
       weather = data.weather[0]
+      
+      // Set the favicon of the site to the weather
+      const ico = `http://openweathermap.org/img/wn/${weather.icon}.png`
+      setFavicon(ico)
       
       console.log('weather id: ', weather.id)
       console.log('weather descritpion: ', weather.description)
@@ -167,18 +172,28 @@ const getDressed = () => {
       // if the outfit calls for a piece of clothing
       if (outfit.includes(c.name)) {
         // display that piece of clothing
-        image(c.img, 0, 0)
+        image(c.img, width*0.5, height*0.5)
         // console.log("outfit: ", c.name, c.image)
       }
     }
   }
 }
 
-const newTempInput = (e) => {
+const newTempInput = () => {
   // temp = Math.floor(Math.abs(e.value))
   temp = tempSlider.value()
   pickOutfit()
   console.log('Change clothes!')
+}
+
+const setFavicon = (ico) => {
+  var link = document.querySelector("link[rel~='icon']");
+  if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.getElementsByTagName('head')[0].appendChild(link);
+  }
+  link.href = ico;
 }
 
 
