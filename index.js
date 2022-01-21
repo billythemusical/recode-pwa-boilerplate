@@ -57,23 +57,25 @@ app.post("/weather", async (req, res) => {
   console.log('got a weather request')
   try{
     
-    let owUrl = "http://api.openweathermap.org/data/2.5/weather"
+    let owUrl = new URL("http://api.openweathermap.org/data/2.5/weather")
     let owParams = new URLSearchParams ({
         units: "imperial",
         appid: owApiKey,
         q: "New York"  
     })
-    let owUrl = "http://api.openweathermap.org/data/2.5/weather?q=New York&appid="+owApiKey
 
     // Check if the request has a city or coordinates
-    // if (req.body.city) {
-    //   owParams.q = req.body.city
-    // } else if (req.body.coords) {
-    //   let {lat, lon} = req.body.coords
-    //   owParams.lat = `lat=${lat}`
-    //   owParams.lon = `lon=${lon}`
-    // }
-    // owUrl.search = owParams
+    if (req.body.city) {
+      owParams.q = req.body.city
+    } else if (req.body.coords) {
+      let {lat, lon} = req.body.coords
+      owParams.lat = `lat=${lat}`
+      owParams.lon = `lon=${lon}`
+    }
+    owUrl.search = owParams
+    
+    console.log(owUrl)
+    
     let data = await fetch(owUrl);
     data = await data.json()
     res.json(data);
