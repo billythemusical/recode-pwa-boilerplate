@@ -13,6 +13,7 @@ let gotWeather = false
 let temp = "Waiting..."
 let tempMin = ""
 let tempMax = ""
+let tempSlider;
 let weather;
 
 let tb; // text box
@@ -35,6 +36,8 @@ function setup () {
   bt.style("font-size", "130px");
   bt.position(width * 0.05, height * 0.1);
   bt.size(500, 500);
+  
+  tempSlider = createSlider(0, 100, 20, 1)
 
   // Get the clothes out of the closet
   clothes = closet();
@@ -77,8 +80,10 @@ const checkWeather = async () => {
 
       // Now...
       pickOutfit();
-      document.getElementById('tempSlider').value = temp;
+      tempSlider.value = temp
+      // document.getElementById('tempSlider').value = temp;
       console.log('setting the temp slider value')
+      
       
       return true // for setting gotWeather
       
