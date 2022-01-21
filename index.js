@@ -54,21 +54,24 @@ app.get("/api/v1/todos", async (req, res) => {
 // GET: "/weather"
 app.get("weather", async (req, res) => {
   try{
-    let city;
-    if (req.body.city) {
-      city = req.body.city
-    } else if (req.body.coords) {
-      city = req.body.coords
-    }
+    
     const owUrl = "http://api.openweathermap.org/data/2.5/weather"
     const owParams = new URLSearchParams ({
-      q: city.JSONStringify(),
         units: "imperial",
           appid: owApiKey
     })
+    // Check if the request has a city or coordinates
+    if (req.body.city) {
+      owParams.q = req.body.city
+    } else if (req.body.coords) {
+      let {lat, lon} = req.body.coords
+      owParams.lat = `lat=${lat}`
+      owParams.lon = `lon=${lon}`
+    }
     owUrl.search = owParams
     const data = await fetch(owUrl);
     res.json(data);
+    console.log('weather response:', res)
     
   } catch(error){
     console.error(error);
