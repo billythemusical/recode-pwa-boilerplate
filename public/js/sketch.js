@@ -55,12 +55,12 @@ function windowResized () {
 
 const checkWeather = async () => {
   try {
+    // Get the weather from our server
     const options = {
       method: 'GET'
     };
     let data = await fetch('/weather', options)
     data = await data.json()
-    
     temp = data.main["temp"]
     tempMin = data.main["temp_min"]
     tempMax = ata.main["temp_max"]

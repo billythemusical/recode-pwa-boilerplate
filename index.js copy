@@ -20,9 +20,6 @@ mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 // --- connect to your collection ---
 const todos = require('./models/todo');
 
-// --- Open Weather API ---
-const apiKey = 
-
 
 // Handle data in a nice way
 app.use(bodyParser.urlencoded({extended: true}));
@@ -37,24 +34,12 @@ app.get("/", (req, res) => {
   res.sendFile( path.resolve(__dirname + "/views/index.html"))
 });
 
-
+//
 
 // ---- ADD YOUR API ENDPOINTS HERE ----
 // GET: "api/v1/todos"
 app.get("/api/v1/todos", async (req, res) => {
   try{
-    const data = await todos.find();
-    res.json(data);
-  } catch(error){
-    console.error(error);
-    res.json(error);
-  }
-});
-
-// GET: "/weather"
-app.get("weather", async (req, res) => {
-  try{
-    
     const data = await todos.find();
     res.json(data);
   } catch(error){

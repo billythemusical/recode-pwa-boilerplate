@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +12,10 @@
     <script src="./js/sketch.js"></script>
 </head>
   <body>
-    <div id="app">
+    <div class="slidecontainer">
+			<input oninput="newTempInput(this);" type="range" min="1" max="100" value="50" class="slider" id="tempSlider">
+		</div>
+<!--     <div id="app">
       <header class="header">
         <h1 class="header__title">Todo app</h1>
       </header>
@@ -25,6 +29,6 @@
         <section class="todo-list"></section>
       </main>
     </div>
-    <script src="./js/main.js"></script>
+    <script src="./js/main.js"></script> -->
   </body>
 </html>
