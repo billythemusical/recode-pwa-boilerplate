@@ -26,7 +26,7 @@ function setup () {
   // To simulate temperature changes
   tempSlider = createSlider(0, 100, 20, 1)
   tempSlider.position(20, 20)
-  tempSlider.oninput = newTempInput()
+  tempSlider.input = newTempInput
 
   // Setting up our text box
   tb = createDiv(temp);
@@ -91,9 +91,9 @@ const checkWeather = async () => {
 
       // Now...
       pickOutfit();
-      tempSlider.value = temp
+      tempSlider.value(temp)
       // document.getElementById('tempSlider').value = temp;
-      console.log('setting the temp slider value')
+      console.log('setting the temp slider value', tempSlider.value())
       
       
       return true // for setting gotWeather
@@ -179,8 +179,8 @@ const getDressed = () => {
   }
 }
 
-const newTempInput = () => {
-  // temp = Math.floor(Math.abs(e.value))
+const newTempInput = (e) => {
+  temp = Math.floor(Math.abs(e.value))
   temp = tempSlider.value()
   pickOutfit()
   console.log('Change clothes!')
