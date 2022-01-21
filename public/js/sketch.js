@@ -1,3 +1,15 @@
+/* For the home screen thingy.  From https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_home_screen
+and https://github.com/mdn/pwa-examples/blob/master/a2hs/index.js */
+
+// Register service worker to control making site work offline
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('/pwa-examples/a2hs/sw.js')
+    .then(() => { console.log('Service Worker Registered'); });
+}
+
+
 let dev = true;
 
 // if (!dev) {
