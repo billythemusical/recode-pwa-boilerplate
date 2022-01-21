@@ -55,13 +55,13 @@ app.get("/api/v1/todos", async (req, res) => {
 // POST: "/weather"
 app.post("/weather", async (req, res) => {
   console.log('got a weather request')
+  let city = "New York"
   try{
-    
     let owUrl = new URL("http://api.openweathermap.org/data/2.5/weather")
     let owParams = new URLSearchParams ({
         units: "imperial",
         appid: owApiKey,
-        q: "New York"  
+        q: city
     })
 
     // Check if the request has a city or coordinates
@@ -74,16 +74,18 @@ app.post("/weather", async (req, res) => {
     }
     owUrl.search = owParams
     
-    console.log(owUrl)
-    
+    // Ping OW API to get weather 
     let data = await fetch(owUrl);
     data = await data.json()
+    
+    // and send to our client
     res.json(data);
-    console.log('weather response:', data)
     
   } catch(error){
+    
     console.error(error);
     res.json(error);
+    
   }
 });
 
