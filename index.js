@@ -23,12 +23,13 @@ const todos = require('./models/todo');
 let city = "New York"
 const owApiKey = config.OW_API_KEY
 const owParams = new URLSearchParams({
-  q: city,
+  q: city.toString(),
   units: "imperial",
   appid: owApiKey
 })
-const owUrl = new URL('http://api.openweathermap.org/data/2.5/weather', owParams)
-fetch(owURL)
+const owUrl = new URL('http://api.openweathermap.org/data/2.5/weather')
+owUrl.search = owParams
+http.request(owURL).then(r => r.json()).then(c => console.log(c))
 
 
 // Handle data in a nice way
