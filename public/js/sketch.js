@@ -21,25 +21,25 @@ let bt; // big temp display
 function setup () {
   // Create the canvas
   createCanvas(windowWidth, windowHeight);
-  imageMode(CENTER);
+  // imageMode(CENTER);
   
   // To simulate temperature changes
   tempSlider = createSlider(0, 100, 20, 1)
-  tempSlider.position(20, 20)
-  tempSlider.input = newTempInput
+  tempSlider.position(300, 20)
+  tempSlider.elt.oninput = newTempInput
 
   // Setting up our text box
   tb = createDiv(temp);
   tb.style("font-family", "Courier");
   tb.style("font-size", "15px");
-  tb.position(20, 60);
+  tb.position(20, 20);
   tb.size(500, 500);
 
   // Setting up our temp box
   bt= createDiv(temp);
   bt.style("font-family", "Arial");
-  bt.style("font-size", "130px");
-  bt.position(20, 100);
+  bt.style("font-size", "110px");
+  bt.position(10, 60);
   bt.size(500, 500);
 
   // Get the clothes out of the closet
@@ -172,7 +172,10 @@ const getDressed = () => {
       // if the outfit calls for a piece of clothing
       if (outfit.includes(c.name)) {
         // display that piece of clothing
-        image(c.img, width*0.5, height*0.5)
+        let w = c.img.width,
+            h = c.img.height, 
+            scale = 0.8
+        image(c.img, -50, 50, w*scale, h*scale)
         // console.log("outfit: ", c.name, c.image)
       }
     }
@@ -180,13 +183,14 @@ const getDressed = () => {
 }
 
 const newTempInput = (e) => {
-  temp = Math.floor(Math.abs(e.value))
+  // temp = Math.floor(Math.abs(e.value))
   temp = tempSlider.value()
   pickOutfit()
-  console.log('Change clothes!')
+  // console.log('Change clothes!')
 }
 
 const setFavicon = (ico) => {
+  // From https://stackoverflow.com/questions/260857/changing-website-favicon-dynamically
   var link = document.querySelector("link[rel~='icon']");
   if (!link) {
       link = document.createElement('link');
