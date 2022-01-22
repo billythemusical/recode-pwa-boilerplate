@@ -12,14 +12,9 @@ if ('serviceWorker' in navigator) {
 
 let dev = true;
 
-// if (!dev) {
-// 	let slider = document.getElementById('tempSlider')
-// 	slider.style.display = "none"
-// }
-
 let clothes;
 let outfit;
-let city = "New York"
+let city = "Brooklyn"
 let gotWeather = false
 let temp = "Waiting..."
 let tempMin = ""
@@ -106,17 +101,20 @@ const checkWeather = async () => {
       
       // Now...
       pickOutfit();
+      
+      // Set the slider to match the weather
       tempSlider.value(temp)
       
-      setTimeout(checkWeather, 5000)
-      
+      // Keep checking the weather 
+      if(!dev) setTimeout(checkWeather, 5000)
+
       return true // for setting gotWeather
       
     }
 
   } catch (e) {
     console.log("Error: ", e)
-    setTimeout(checkWeather, 5000)
+    if(!dev) setTimeout(checkWeather, 5000)
     return false
     
   }
