@@ -33,6 +33,7 @@ let bt; // big temp display
 function setup () {
   // Create the canvas
   createCanvas(windowWidth, windowHeight);
+  frameRate(12);
   // imageMode(CENTER);
   
   // To simulate temperature changes
@@ -95,22 +96,23 @@ const checkWeather = async () => {
       tempMin = parseInt(data.main["temp_min"])
       tempMax = parseInt(data.main["temp_max"])
       
+      console.log("Got the weather", temp + 'º F')
+      
       weather = data.weather[0]
       
       // Set the favicon of the site to the weather
       const ico = `http://openweathermap.org/img/wn/${weather.icon}.png`
       setFavicon(ico)
       
-      console.log('weather id: ', weather.id)
+      // console.log('weather id: ', weather.id)
       console.log('weather descritpion: ', weather.description)
-      console.log("Got the weather", temp + 'º F')
+      
 
       // Now...
       pickOutfit();
       tempSlider.value(temp)
-      // document.getElementById('tempSlider').value = temp;
-      console.log('setting the temp slider value', tempSlider.value())
       
+      setTimeout(checkWeather, 5000)
       
       return true // for setting gotWeather
       
@@ -118,8 +120,11 @@ const checkWeather = async () => {
 
   } catch (e) {
     console.log("Error: ", e)
+    setTimeout(checkWeather, 5000)
     return false
+    
   }
+  
 }
 
 const displayWeather = async () => {
