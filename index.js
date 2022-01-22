@@ -36,9 +36,9 @@ app.get("/", (req, res) => {
   res.sendFile( path.resolve(__dirname + "/views/index.html"))
 });
 
-app.get("/images", (req,res) => {
-  res.sendFile(path.resolve(__dirname+"/images"))
-})
+// app.get("/images", (req,res) => {
+//   res.sendFile(path.resolve(`${__dirname}/images`))
+// })
 
 // POST: "/weather"
 app.post("/weather", async (req, res) => {
