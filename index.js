@@ -7,6 +7,11 @@ const app = express();
 const config = require('./config');
 const { URL, URLSearchParams } = require('url');
 
+// const testFolder = './';
+// fs.readdirSync(testFolder).forEach(file => {
+//   console.log(file);
+// });
+
 const PORT = config.PORT;
 
 // ---- Connect to mongodb here ----
@@ -37,6 +42,10 @@ app.use(express.static(publicURL));
 app.get("/", (req, res) => {
   res.sendFile( path.resolve(__dirname + "/views/index.html"))
 });
+
+app.get("/images", (req,res) => {
+  res.sendFile(path.resolve(__dirname+"/images"))
+})
 
 
 
