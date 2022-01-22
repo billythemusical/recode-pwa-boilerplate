@@ -1,0 +1,16 @@
+{
+  "lang": "en",
+  "name": "Dress the Weather",
+  "short_name": "d4w",
+  "description": "Dress for the weather - we'll help!",
+  "start_url": "/",
+  "background_color": "rgb(200, 200, 200)",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "/images/maskable-icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
