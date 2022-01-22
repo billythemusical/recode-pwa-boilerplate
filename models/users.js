@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const users = new Schema({
   "name": String,
-  "status": String
+  "email": String
 });
 
 const db = mongoose.model('todos', users)

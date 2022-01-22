@@ -88,7 +88,7 @@ const checkWeather = async () => {
     };
     let data = await fetch('/weather', options)
     data = await data.json()
-    console.log('got data from /weather', data)
+    // console.log('got data from /weather', data)
     
     if (data.weather && data.main) {
       
@@ -183,7 +183,7 @@ const pickOutfit = () => {
   }
 
   console.log('Picked outfit')
-  if(outfit) outfit.forEach(o => console.log(o))
+  if(outfit) console.log(outfit.toString())
 }
 
 const getDressed = () => {

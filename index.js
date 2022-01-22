@@ -7,11 +7,6 @@ const app = express();
 const config = require('./config');
 const { URL, URLSearchParams } = require('url');
 
-// const testFolder = './';
-// fs.readdirSync(testFolder).forEach(file => {
-//   console.log(file);
-// });
-
 const PORT = config.PORT;
 
 // ---- Connect to mongodb here ----
@@ -23,12 +18,10 @@ const MONGODB_URI = config.MONGODB_URI;
 mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 
 // --- connect to your collection ---
-const db = require('./models/todo');
+const db = require('./models/users');
 
 // --- Open Weather API ---
 const owApiKey = config.OW_API_KEY
-// console.log(owApiKey)
-
 
 // Handle data in a nice way
 app.use(bodyParser.urlencoded({extended: true}));
@@ -46,20 +39,6 @@ app.get("/", (req, res) => {
 app.get("/images", (req,res) => {
   res.sendFile(path.resolve(__dirname+"/images"))
 })
-
-
-
-// ---- ADD YOUR API ENDPOINTS HERE ----
-// GET: "api/v1/todos"
-app.get("/api/v1/todos", async (req, res) => {
-  try{
-    const data = await todos.find();
-    res.json(data);
-  } catch(error){
-    console.error(error);
-    res.json(error);
-  }
-});
 
 // POST: "/weather"
 app.post("/weather", async (req, res) => {
@@ -95,46 +74,6 @@ app.post("/weather", async (req, res) => {
     console.error(error);
     res.json(error);
     
-  }
-});
-
-// POST: "api/v1/todos"
-app.post("/api/v1/todos", async (req, res) => {
-  try{
-    const newData = {
-      todo: req.body.todo,
-      status: req.body.status
-    }
-    const data = await todos.create(newData);
-    res.json(data);
-  } catch(error){
-    console.error(error);
-    res.json(error);
-  }
-});
-
-// PUT: "api/v1/todos:id"
-app.put("/api/v1/todos/:id", async (req, res) => {
-  try{
-    const updatedData = {
-      todo: req.body.todo,
-      status: req.body.status
-    }
-    const data = await todos.findOneAndUpdate({_id: req.params.id}, updatedData, {new:true});
-    res.json(data);
-  } catch(error){
-    console.error(error);
-    res.json(error);
-  }
-});
-
-// DELETE: "api/v1/todos:id"
-app.delete('/api/v1/todos/:id', async (req, res) => {
-  try {
-  const deletedDocument = await todos.findOneAndDelete(req.params.id);
-  res.json({"message":"successfully removed item", "data": JSON.stringify(deletedDocument) });
-  } catch (error) {
-    res.json({ error: JSON.stringify(error) });
   }
 });
 
