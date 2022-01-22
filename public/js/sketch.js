@@ -101,8 +101,8 @@ const checkWeather = async () => {
       weather = data.weather[0]
       
       // Set the favicon of the site to the weather
-      const ico = `http://openweathermap.org/img/wn/${weather.icon}.png`
-      setFavicon(ico)
+      const iconUrl = `http://openweathermap.org/img/wn/${weather.icon}.png`
+      setFavicon(iconUrl)
       
       // console.log('weather id: ', weather.id)
       console.log('weather descritpion: ', weather.description)
@@ -210,7 +210,7 @@ const newTempInput = (e) => {
   // console.log('Change clothes!')
 }
 
-const setFavicon = (ico) => {
+const setFavicon = (iconUrl) => {
   // From https://stackoverflow.com/questions/260857/changing-website-favicon-dynamically
   var link = document.querySelector("link[rel~='icon']");
   if (!link) {
@@ -218,7 +218,7 @@ const setFavicon = (ico) => {
       link.rel = 'icon';
       document.getElementsByTagName('head')[0].appendChild(link);
   }
-  link.href = ico;
+  link.href = iconUrl;
 }
 
 

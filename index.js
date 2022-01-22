@@ -23,7 +23,7 @@ const MONGODB_URI = config.MONGODB_URI;
 mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 
 // --- connect to your collection ---
-const todos = require('./models/todo');
+const db = require('./models/todo');
 
 // --- Open Weather API ---
 const owApiKey = config.OW_API_KEY
