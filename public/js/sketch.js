@@ -71,8 +71,8 @@ function draw () {
 
 function windowResized () {
   resizeCanvas(windowWidth, windowHeight);
-  tb.size(windowWidth, windowHeight);
-  bt.size(windowWidth, windowHeight);
+  // tb.size(windowWidth, windowHeight);
+  // bt.size(windowWidth, windowHeight);
 
 }
 
@@ -95,9 +95,6 @@ const checkWeather = async () => {
       temp = parseInt(data.main["temp"])
       tempMin = parseInt(data.main["temp_min"])
       tempMax = parseInt(data.main["temp_max"])
-      
-      console.log("Got the weather", temp + 'º F')
-      
       weather = data.weather[0]
       
       // Set the favicon of the site to the weather
@@ -105,9 +102,8 @@ const checkWeather = async () => {
       setFavicon(iconUrl)
       
       // console.log('weather id: ', weather.id)
-      console.log('weather descritpion: ', weather.description)
+      console.log("Got the weather", temp + 'º F with ' + weather.description)
       
-
       // Now...
       pickOutfit();
       tempSlider.value(temp)
