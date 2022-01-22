@@ -1,6 +1,6 @@
 self.addEventListener('install', (e) => {
   e.waitUntil(
-    caches.open('fox-store').then((cache) => cache.addAll([
+    caches.open('d4w-store').then((cache) => cache.addAll([
       '/'
     ])),
   );
