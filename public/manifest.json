@@ -8,8 +8,12 @@
   "background_color": "rgb(200, 200, 200)",
   "theme-color": "white",
   "display": "fullscreen",
-  "icons": {
-      "192": "/images/maskable-icon.png"
-  },
+  "icons": [
+    {
+      "src": "/images/maskable-icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
   "id": "dev-d4w"
 }
