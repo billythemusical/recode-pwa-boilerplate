@@ -1,14 +1,16 @@
 // Code to handle install prompt on desktop
 
 let deferredPrompt;
-const addBtn = document.querySelector('.add-button');
+const addBtn = document.getElementById('add-button');
 addBtn.style.display = 'none';
 
 window.addEventListener('beforeinstallprompt', (e) => {
+  console.log('did the beforeinstallprompt')
   // Prevent Chrome 67 and earlier from automatically showing the prompt
   e.preventDefault();
   // Stash the event so it can be triggered later.
   deferredPrompt = e;
+  console.log("deferredPrompt:", deferredPrompt)
   // Update UI to notify the user they can add to home screen
   addBtn.style.display = 'block';
 
