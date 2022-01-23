@@ -6,9 +6,14 @@
   "description": "Dress for the weather - we'll help!",
   "start_url": "/",
   "background_color": "rgb(200, 200, 200)",
-  "theme-color": "white",
+  "theme-color": "rgb(200, 200, 200)",
   "display": "fullscreen",
   "icons": [
+    {
+      "src": "/images/maskable-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
     {
       "src": "/images/maskable-icon.png",
       "sizes": "192x192",
