@@ -212,7 +212,7 @@ const setFavicon = (iconUrl) => {
       link.rel = 'icon';
       document.getElementsByTagName('head')[0].appendChild(link);
   }
-  link.href = iconUrl;
+  // link.href = iconUrl;  // http could be effecting the PWA install
 }
 
 
