@@ -1,13 +1,15 @@
+let CACHE_NAME = 'd4w-store'
+
 self.addEventListener('install', (e) => {
   e.waitUntil(
-    caches.open('d4w-store').then((cache) => cache.addAll([
+    caches.open(CACHE_NAME).then((cache) => cache.addAll([
       '/'
     ])),
   );
 });
 
 self.addEventListener('fetch', (e) => {
-  console.log(e.request.url);
+  // console.log(e.request.url);
   e.respondWith(
     caches.match(e.request).then((response) => response || fetch(e.request)),
   );

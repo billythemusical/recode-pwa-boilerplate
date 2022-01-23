@@ -21,7 +21,7 @@ input[type="slider"] {
   padding: 6px;
 }
 
-.add-button {
+#add-button {
   position: absolute;
   bottom: 1px;
   left: 1px;
