@@ -3,11 +3,15 @@ and https://github.com/mdn/pwa-examples/blob/master/a2hs/index.js */
 
 // Register service worker to control making site work offline
 
-if ('serviceWorker' in navigator) {
+const init = () => {
+  if ('serviceWorker' in navigator) {
   navigator.serviceWorker
     .register('/js/sw.js')
     .then(() => { console.log('Service Worker Registered'); });
+  }
 }
+
+document.addEventListener('DOMContentLoaded', init, false);
 
 
 let dev = true;
