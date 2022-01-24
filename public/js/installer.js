@@ -2,7 +2,7 @@
 
 let deferredPrompt;
 const addBtn = document.getElementById('add-button');
-addBtn.style.display = 'none';
+// addBtn.style.display = 'none';
 
 window.addEventListener('beforeinstallprompt', (e) => {
   console.log('did the beforeinstallprompt')

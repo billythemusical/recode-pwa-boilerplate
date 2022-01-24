@@ -23,7 +23,7 @@ input[type="slider"] {
 
 #add-button {
   position: absolute;
-  bottom: 2px;
+  bottom: 1px;
   left: 1px;
 }
 
@@ -31,4 +31,10 @@ input[type="slider"] {
   position: absolute;
   bottom: 20px;
   left: 1px
+}
+
+.refresh-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
