@@ -175,13 +175,13 @@ const pickOutfit = () => {
     case weather.id >= 200 && weather.id < 600:
       outfit.push('umbrella')
       break
-    case weather.id == 800 && temp > 50:
+    case weather.id == 800:
       outfit.push('sunglasses')
       break
   }
 
-  console.log('Picked outfit')
-  if(outfit) console.log(outfit.toString())
+  // console.log('Picked outfit')
+  // if(outfit) console.log(outfit.toString())
 }
 
 const getDressed = () => {
