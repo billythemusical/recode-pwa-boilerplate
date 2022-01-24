@@ -5,6 +5,7 @@
   "short_name": "dev-d4w",
   "description": "Dress for the weather - we'll help!",
   "start_url": "/",
+  "scope": "./",
   "background_color": "rgb(200, 200, 200)",
   "theme-color": "rgb(200, 200, 200)",
   "display": "fullscreen",

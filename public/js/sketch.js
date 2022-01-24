@@ -1,19 +1,3 @@
-/* For the home screen thingy.  From https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_home_screen
-and https://github.com/mdn/pwa-examples/blob/master/a2hs/index.js */
-
-// Register service worker to control making site work offline
-
-const init = () => {
-  if ('serviceWorker' in navigator) {
-  navigator.serviceWorker
-    .register('/sw.js')
-    .then(() => { console.log('Service Worker Registered'); });
-  }
-}
-
-document.addEventListener('DOMContentLoaded', init, false);
-
-
 let dev = true;
 
 let clothes;

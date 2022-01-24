@@ -1,11 +1,11 @@
 let CACHE_NAME = "d4w-store";
 
 self.addEventListener("install", (e) => {
-  e.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(["/"])));
+  e.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(["./"])));
 });
 
 self.addEventListener("fetch", (e) => {
-  console.log(e.request.url);
+  // console.log(e.request.url); // this will show the SW is working
   e.respondWith(
     caches.match(e.request).then((response) => response || fetch(e.request))
   );
