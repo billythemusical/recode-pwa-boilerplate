@@ -4,6 +4,10 @@ self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(["./"])));
 });
 
+const options = {
+  
+}
+
 self.addEventListener("fetch", (e) => {
   // console.log(e.request.url); // this will show the SW is working
   e.respondWith(
