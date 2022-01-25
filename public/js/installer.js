@@ -6,8 +6,9 @@ and https://github.com/mdn/pwa-examples/blob/master/a2hs/index.js */
 const init = () => {
   if ('serviceWorker' in navigator) {
   navigator.serviceWorker
-    .register('/sw.js')
-    .then(() => { console.log('Service Worker Registered'); });
+    .register('/js/sw.js', { scope:  '/' })
+    .then(() => { console.log('Service Worker Registered'); })
+    .catch(()=> { console.log('There was an error registering the Service Worker.')});
   }
 }
 
