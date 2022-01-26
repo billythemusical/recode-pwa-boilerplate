@@ -7,8 +7,8 @@ const init = () => {
   if ('serviceWorker' in navigator) {
   navigator.serviceWorker
     .register('/js/sw.js', { scope:  '/' })
+    .catch((e)=> { console.error('There was an error registering the Service Worker.', e)})
     .then(() => { console.log('Service Worker Registered'); })
-    .catch(()=> { console.log('There was an error registering the Service Worker.')});
   }
 }
 
