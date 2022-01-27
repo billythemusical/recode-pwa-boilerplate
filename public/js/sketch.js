@@ -49,7 +49,7 @@ function setup () {
   document.getElementsByClassName('refresh-button')[0]
     .addEventListener('click', () => {
       console.log('Refreshing the weather')
-      checkWeather()
+      refreshWeather()
     })
 };
 
@@ -118,10 +118,10 @@ const checkWeather = async () => {
 }
 
 const refreshWeather = async () => {
-  temp = "-"
-  tempMin = "-" 
-  tempMax = "-" 
-  weather = "-"
+  temp = "0"
+  tempMin = "0" 
+  tempMax = "0" 
+  weather = "..."
   
   console.log('refreshing weather')
   
