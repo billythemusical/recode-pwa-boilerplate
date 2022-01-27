@@ -37,4 +37,9 @@ input[type="slider"] {
   position: absolute;
   top: 20px;
   right: 20px;
+  padding: 5px;
+}
+
+.refresh-button:active {
+  background-color: rgba(0,0,0,0.2); /* Black background with opacity */
 }
