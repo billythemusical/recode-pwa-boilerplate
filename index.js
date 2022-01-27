@@ -45,6 +45,8 @@ app.get("/", (req, res) => {
 // POST: "/weather"
 app.get("/weather", getWeather, (req, res) => {
   console.log('got a weather request')
+  console.log('req:', req)
+  console.log('res:', res)
 //   let city = "New York"
 //   try{
 //     let owUrl = new URL("http://api.openweathermap.org/data/2.5/weather")
@@ -69,7 +71,7 @@ app.get("/weather", getWeather, (req, res) => {
 //     data = await data.json()
     
 //     // and send to our client
-//     res.json(data);
+    // res.json(data);
     
 //   } catch(error){
     
