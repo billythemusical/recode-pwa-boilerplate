@@ -18,7 +18,10 @@ const users = new Schema(
 
 const db = mongoose.model('dev-d4w', users)
 
-module.exports = db;
+module.exports = {
+  db,
+  defualtCloset
+}
 
 
 // {
