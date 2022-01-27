@@ -3,7 +3,7 @@ let dev = true;
 let clothes;
 let outfit;
 let city = "Brooklyn"
-let location = ""
+let loc = ""
 let gotWeather = false
 let temp = "Waiting..."
 let tempMin = ""
@@ -69,12 +69,24 @@ function windowResized () {
 
 const checkWeather = async () => {
   
+  const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+  
   // Only get the location the first time we load the page
-  if(location == "") {
-    location = await getLocation()
-    console.log('got lat and lon for the first time', location)
+  if(loc == "") {
+    loc = await getLocation()
+    console.log('got lat and lon for the first time', loc)
   }
   
+  if(loc) {
+    options.body = JSON.stringify({ "coords": { "lat": loc.lat, "lon": loc.lon } })
+  } else {
+    options.body = JSON.stringify({"city": city})                   
+  }
   
   try {
     // Get the weather from our server
@@ -83,7 +95,7 @@ const checkWeather = async () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({"city": city})
+      body: JSON.stringify({"city": city, "coords": {lat: loc.lat, lon: loc.lon})
     };
     let data = await fetch('/weather', options)
     data = await data.json()
@@ -240,7 +252,7 @@ const getLocation = async () => {
     navigator.geolocation.getCurrentPosition(async position => {
       lat = position.coords.latitude
       lon = position.coords.longitude
-      console.log(`Your location is: <br>lat: ${lat} lon:${lon}`)
+      console.log(`Your location is:\nlat: ${lat} lon:${lon}`)
     })
       
     return { lat, lon }
@@ -248,7 +260,7 @@ const getLocation = async () => {
   } 
   catch (error) {
     console.error(error)
-    return error
+    return false
   }
   
 }
