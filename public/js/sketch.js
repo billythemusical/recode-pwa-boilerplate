@@ -60,7 +60,14 @@ function windowResized () {
 }
 
 const checkWeather = async () => {
-      temp = ""
+  
+  console.log('checking weather')
+  
+  temp = ""
+  tempMin = "" 
+  tempMax = "" 
+  weather = ""
+  
   try {
     // Get the weather from our server
     const options = {
