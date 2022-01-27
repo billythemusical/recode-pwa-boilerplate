@@ -40,10 +40,17 @@ function setup () {
   // bt.size(windowWidth, windowHeight);
 
   // Get the clothes out of the closet
-  clothes = closet();
+  clothes = closet()
 
   // Check the weather and let everyone know if we did
-  gotWeather = checkWeather();
+  gotWeather = checkWeather()
+  
+  // Set the refresh button
+  document.getElementsByClassName('refresh-button')[0]
+    .addEventListener('click', () => {
+      console.log('Refreshing the weather')
+      checkWeather()
+    })
 };
 
 function draw () {
@@ -60,13 +67,6 @@ function windowResized () {
 }
 
 const checkWeather = async () => {
-  
-  console.log('checking weather')
-  
-  temp = ""
-  tempMin = "" 
-  tempMax = "" 
-  weather = ""
   
   try {
     // Get the weather from our server
@@ -117,6 +117,19 @@ const checkWeather = async () => {
   
 }
 
+const refreshWeather = async () => {
+  temp = "-"
+  tempMin = "-" 
+  tempMax = "-" 
+  weather = "-"
+  
+  console.log('refreshing weather')
+  
+  await new Promise(r => setTimeout(r, 1000)); // artificial waiting
+  
+  checkWeather()
+}
+
 const displayWeather = async () => {
   
   if(weather && temp) {
@@ -128,8 +141,6 @@ const displayWeather = async () => {
     bt.html(temp + 'º') // Uudate big temp display
   }
   
-  
-
 }
 
 const pickOutfit = () => {
