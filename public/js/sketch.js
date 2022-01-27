@@ -3,6 +3,7 @@ let dev = true;
 let clothes;
 let outfit;
 let city = "Brooklyn"
+let location = ""
 let gotWeather = false
 let temp = "Waiting..."
 let tempMin = ""
@@ -67,6 +68,13 @@ function windowResized () {
 }
 
 const checkWeather = async () => {
+  
+  // Only get the location the first time we load the page
+  if(location == "") {
+    location = await getLocation()
+    console.log('got lat and lon for the first time', location)
+  }
+  
   
   try {
     // Get the weather from our server
@@ -220,6 +228,29 @@ const setFavicon = (iconUrl) => {
       document.getElementsByTagName('head')[0].appendChild(link);
   }
   // link.href = iconUrl;  // http could be effecting the PWA install
+}
+
+const getLocation = async () => {
+  console.log("Getting your location...")
+  
+  let lat, lon;
+  
+  try {
+    
+    navigator.geolocation.getCurrentPosition(async position => {
+      lat = position.coords.latitude
+      lon = position.coords.longitude
+      console.log(`Your location is: <br>lat: ${lat} lon:${lon}`)
+    })
+      
+    return { lat, lon }
+
+  } 
+  catch (error) {
+    console.error(error)
+    return error
+  }
+  
 }
 
 
