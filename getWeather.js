@@ -1,4 +1,4 @@
-const fetch = require('node-fetch')
+const fetch = require('node-fetch');
 const config = require('./config');
 const { URL, URLSearchParams } = require('url');
 
@@ -6,7 +6,7 @@ const { URL, URLSearchParams } = require('url');
 const owApiKey = config.OW_API_KEY
 
 
-const getWeather = (req, res, next) => {
+function getWeather (req, res, next) {
   console.log('got a weather request')
   let city = "New York"
   
@@ -29,8 +29,8 @@ const getWeather = (req, res, next) => {
     owUrl.search = owParams
     
     // Ping OW API to get weather 
-    let data = await fetch(owUrl);
-    data = await data.json()
+    let data = fetch(owUrl);
+    data = data.json()
     
     // and send to our client
     return res.json(data);
@@ -39,8 +39,12 @@ const getWeather = (req, res, next) => {
   } catch(error){
     
     console.error(error);
-    res.json(error);
+    return res.json(error);
     next()
     
   }
+}
+
+module.exports = {
+  getWeather
 }

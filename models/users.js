@@ -18,8 +18,6 @@ const users = new Schema(
 
 const db = mongoose.model('dev-d4w', users)
 
-db.
-
 module.exports = db
 
 

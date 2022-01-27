@@ -1,11 +1,13 @@
 const fs = require('fs');
 const path = require('path');
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
 const config = require('./config');
-const { URL, URLSearchParams } = require('url');
+// const { URL, URLSearchParams } = require('url');
+const getWeather = require('./getWeather')
+
+const app = express();
 
 const PORT = config.PORT;
 
@@ -41,40 +43,40 @@ app.get("/", (req, res) => {
 // })
 
 // POST: "/weather"
-app.post("/weather", async (req, res) => {
+app.post("/weather", getWeather, (req, res) => {
   console.log('got a weather request')
-  let city = "New York"
-  try{
-    let owUrl = new URL("http://api.openweathermap.org/data/2.5/weather")
-    let owParams = new URLSearchParams ({
-        units: "imperial",
-        appid: owApiKey,
-        q: city
-    })
+//   let city = "New York"
+//   try{
+//     let owUrl = new URL("http://api.openweathermap.org/data/2.5/weather")
+//     let owParams = new URLSearchParams ({
+//         units: "imperial",
+//         appid: owApiKey,
+//         q: city
+//     })
 
-    // Check if the request has a city or coordinates
-    if (req.body.city) {
-      owParams.q = req.body.city
-    } else if (req.body.coords) {
-      let {lat, lon} = req.body.coords
-      owParams.lat = `lat=${lat}`
-      owParams.lon = `lon=${lon}`
-    }
-    owUrl.search = owParams
+//     // Check if the request has a city or coordinates
+//     if (req.body.city) {
+//       owParams.q = req.body.city
+//     } else if (req.body.coords) {
+//       let {lat, lon} = req.body.coords
+//       owParams.lat = `lat=${lat}`
+//       owParams.lon = `lon=${lon}`
+//     }
+//     owUrl.search = owParams
     
-    // Ping OW API to get weather 
-    let data = await fetch(owUrl);
-    data = await data.json()
+//     // Ping OW API to get weather 
+//     let data = await fetch(owUrl);
+//     data = await data.json()
     
-    // and send to our client
-    res.json(data);
+//     // and send to our client
+//     res.json(data);
     
-  } catch(error){
+//   } catch(error){
     
-    console.error(error);
-    res.json(error);
+//     console.error(error);
+//     res.json(error);
     
-  }
+//   }
 });
 
 // Start listening
