@@ -43,8 +43,8 @@ app.get("/", (req, res) => {
 // })
 
 // POST: "/weather"
-app.get("/weather", getWeather, (req, res) => {
-  console.log('got a weather request')
+app.post("/weather", getWeather, (req, res) => {
+  // console.log('got a weather request')
   console.log('req:', req)
   console.log('res:', res)
 //   let city = "New York"

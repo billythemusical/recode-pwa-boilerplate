@@ -63,7 +63,7 @@ const checkWeather = async () => {
   try {
     // Get the weather from our server
     const options = {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },

@@ -6,16 +6,16 @@ const { URL, URLSearchParams } = require('url');
 const owApiKey = config.OW_API_KEY
 
 
-function getWeather (req, res, next) {
-  console.log('got a weather request')
-  let city = "New York"
+async function getWeather (req, res, next) {
+  console.log('<<-->>')
+  console.log('getWeather req', req.body)
   
   try{
     let owUrl = new URL("http://api.openweathermap.org/data/2.5/weather")
     let owParams = new URLSearchParams ({
         units: "imperial",
         appid: owApiKey,
-        q: city
+        q: "New York"
     })
 
     // Check if the request has a city or coordinates
@@ -29,20 +29,22 @@ function getWeather (req, res, next) {
     owUrl.search = owParams
     
     // Ping OW API to get weather 
-    let data = fetch(owUrl);
+    let data = await fetch(owUrl);
     data = data.json()
     
     // and send to our client
-    return res.json(data);
-    next()
+    return res.json(data)
+    
     
   } catch(error){
     
     console.error(error);
     return res.json(error);
-    next()
     
   }
+  
+next()
+  
 }
 
 module.exports = getWeather
