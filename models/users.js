@@ -2,14 +2,12 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const { defaultCloset, newClothing } = require('../data/defaultCloset')
 
 const users = new Schema( 
   { users: [
       {
-        name: String,
+        username: String,
         email: String,
-        default_set: Array,
         closet: Array
       }
     ]
