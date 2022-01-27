@@ -11,20 +11,18 @@ self.addEventListener("fetch", (e) => {
   );
 });
 
-self.addEventListener("activate", function (event) {
+self.addEventListener('activate', function(event) {
   event.waitUntil(
-    caches
-      .keys()
+    caches.keys()
       .then((keyList) => {
-        return Promise.all(
-          keyList.map((key) => {
-            if (key !== CACHE_NAME) {
-              console.log("[ServiceWorker] Removing old cache", key);
-              return caches.delete(key);
-            }
-          })
-        );
+        return Promise.all(keyList.map((key) => {
+          if (key !== CACHE_NAME) {
+            console.log('[ServiceWorker] Removing old cache', key)
+            return caches.delete(key)
+          }
+        }))
       })
       .then(() => self.clients.claim())
-  );
-});
+  )
+})
+
