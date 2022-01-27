@@ -121,7 +121,7 @@ const refreshWeather = async () => {
   temp = "0"
   tempMin = "0" 
   tempMax = "0" 
-  weather = "..."
+  weather.description = "..."
   
   console.log('refreshing weather')
   
