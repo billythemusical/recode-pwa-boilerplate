@@ -43,8 +43,12 @@ function setup () {
   // Get the clothes out of the closet
   clothes = closet()
   
-  // Get your location if possible (which kicks over to checkWeather)
-  getLocation()
+  // // Get your location if possible (which kicks over to checkWeather)
+  // getLocation()
+  
+  // Check the weather and let everyone know if we did
+  console.log('got location, checking weather')
+  gotWeather = checkWeather()
   
   // Set the refresh button
   document.getElementsByClassName('refresh-button')[0]
@@ -62,9 +66,6 @@ function draw () {
 
 function windowResized () {
   resizeCanvas(windowWidth, windowHeight);
-  // tb.size(windowWidth, windowHeight);
-  // bt.size(windowWidth, windowHeight);
-
 }
 
 const checkWeather = async () => {
@@ -73,13 +74,8 @@ const checkWeather = async () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
-      }
-    };
-  
-  if(loc.lat && loc.lon) {
-    options.body = JSON.stringify({ "coords": { "lat": loc.lat, "lon": loc.lon } })
-  } else {
-    options.body = JSON.stringify({"city": city})                
+      },
+      body: JSON.stringify({"city": city})                
   }
   
   try {
@@ -229,27 +225,27 @@ const setFavicon = (iconUrl) => {
   // link.href = iconUrl;  // http could be effecting the PWA install
 }
 
-const getLocation = async () => {
-  console.log("Running getLocation")
+// const getLocation = async () => {
+//   console.log("Running getLocation")
   
-  try {
+//   try {
     
-    await navigator.geolocation.getCurrentPosition(async position => {
-      loc.lat = position.coords.latitude
-      loc.lon = position.coords.longitude
-      console.log(`Your location is:\nlat: ${loc.lat} lon:${loc.lon}`)
-      // Check the weather and let everyone know if we did  
-      console.log('got location, checking weather')
-      gotWeather = checkWeather()
-    })
-  } 
-  catch (error) {
-    console.error(`There was an error getting your exact location:\n${error}`)
-    // Check the weather and let everyone know if we did
-    console.log('got location, checking weather')
-    gotWeather = checkWeather()
-  }
-}
+//     await navigator.geolocation.getCurrentPosition(async position => {
+//       loc.lat = position.coords.latitude
+//       loc.lon = position.coords.longitude
+//       console.log(`Your location is:\nlat: ${loc.lat} lon:${loc.lon}`)
+//       // Check the weather and let everyone know if we did  
+//       console.log('got location, checking weather')
+//       gotWeather = checkWeather()
+//     })
+//   } 
+//   catch (error) {
+//     console.error(`There was an error getting your exact location:\n${error}`)
+//     // Check the weather and let everyone know if we did
+//     console.log('got location, checking weather')
+//     gotWeather = checkWeather()
+//   }
+// }
 
 
 /*
