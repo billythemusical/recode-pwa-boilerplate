@@ -3,7 +3,7 @@ let dev = true;
 let clothes;
 let outfit;
 let city = "Brooklyn"
-let loc = null
+let loc = {}
 let gotWeather = false
 let temp = "Waiting..."
 let tempMin = ""
@@ -43,6 +43,9 @@ function setup () {
   // Get the clothes out of the closet
   clothes = closet()
   
+  // Get your location if possible (which kicks over to checkWeather)
+  getLocation()
+  
   // Set the refresh button
   document.getElementsByClassName('refresh-button')[0]
     .addEventListener('click', () => {
@@ -73,17 +76,10 @@ const checkWeather = async () => {
       }
     };
   
-  // Only get the location the first time we load the page
-  if(loc === null) {
-    console.log('gonna ask for location')
-    loc = await getLocation()
-    console.log('got lat and lon for the first time', loc)
-  }
-  
-  if(loc) {
+  if(loc.lat && loc.lon) {
     options.body = JSON.stringify({ "coords": { "lat": loc.lat, "lon": loc.lon } })
   } else {
-    options.body = JSON.stringify({"city": city})                   
+    options.body = JSON.stringify({"city": city})                
   }
   
   try {
@@ -236,27 +232,23 @@ const setFavicon = (iconUrl) => {
 const getLocation = async () => {
   console.log("Running getLocation")
   
-  let lat, lon;
-  
   try {
     
-    navigator.geolocation.getCurrentPosition(async position => {
-      lat = position.coords.latitude
-      lon = position.coords.longitude
-      console.log(`Your location is:\nlat: ${lat} lon:${lon}`)
-      
-      // Check the weather and let everyone know if we did
+    await navigator.geolocation.getCurrentPosition(async position => {
+      loc.lat = position.coords.latitude
+      loc.lon = position.coords.longitude
+      console.log(`Your location is:\nlat: ${loc.lat} lon:${loc.lon}`)
+      // Check the weather and let everyone know if we did  
+      console.log('got location, checking weather')
       gotWeather = checkWeather()
-      return { lat, lon }
     })
-      
-
   } 
   catch (error) {
-    console.error(`There was an error getting your location:\n${error}`)
-    return false
+    console.error(`There was an error getting your exact location:\n${error}`)
+    // Check the weather and let everyone know if we did
+    console.log('got location, checking weather')
+    gotWeather = checkWeather()
   }
-  
 }
 
 
