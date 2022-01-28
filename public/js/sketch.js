@@ -3,7 +3,7 @@ let dev = true;
 let clothes;
 let outfit;
 let city = "Brooklyn"
-let loc = ""
+let loc = null
 let gotWeather = false
 let temp = "Waiting..."
 let tempMin = ""
@@ -42,9 +42,6 @@ function setup () {
 
   // Get the clothes out of the closet
   clothes = closet()
-
-  // Check the weather and let everyone know if we did
-  gotWeather = checkWeather()
   
   // Set the refresh button
   document.getElementsByClassName('refresh-button')[0]
@@ -77,7 +74,8 @@ const checkWeather = async () => {
     };
   
   // Only get the location the first time we load the page
-  if(loc == "") {
+  if(loc === null) {
+    console.log('gonna ask for location')
     loc = await getLocation()
     console.log('got lat and lon for the first time', loc)
   }
@@ -90,13 +88,6 @@ const checkWeather = async () => {
   
   try {
     // Get the weather from our server
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({"city": city, "coords": {lat: loc.lat, lon: loc.lon})
-    };
     let data = await fetch('/weather', options)
     data = await data.json()
     // console.log('got data from /weather', data)
@@ -243,7 +234,7 @@ const setFavicon = (iconUrl) => {
 }
 
 const getLocation = async () => {
-  console.log("Getting your location...")
+  console.log("Running getLocation")
   
   let lat, lon;
   
@@ -253,13 +244,16 @@ const getLocation = async () => {
       lat = position.coords.latitude
       lon = position.coords.longitude
       console.log(`Your location is:\nlat: ${lat} lon:${lon}`)
+      
+      // Check the weather and let everyone know if we did
+      gotWeather = checkWeather()
+      return { lat, lon }
     })
       
-    return { lat, lon }
 
   } 
   catch (error) {
-    console.error(error)
+    console.error(`There was an error getting your location:\n${error}`)
     return false
   }
   
