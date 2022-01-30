@@ -9,16 +9,39 @@
     <link rel="apple-touch-icon" href="/images/maskable-icon-512.png" />
     <base href="./">
     <title>d4w, An app to help you dress for the weather!</title>
-    <link rel="stylesheet" href="./styles/main.css">
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
-    <script src="./js/closet.js"></script>
-    <script src="./js/sketch.js"></script>   
-    <script src="./js/installer.js"></script>
+<!--     <script src="./js/installer.js"></script> -->
 </head>
+  <link rel="stylesheet" href="./styles/main.css">
+  <script>
+        // register service worker
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('sw.js', { scope: '/' })
+                .then(function (reg) {
+                    if (reg.installing) {
+                        console.log('Service worker installing');
+                    } else if (reg.waiting) {
+                        console.log('Service worker installed');
+                    } else if (reg.active) {
+                        console.log('Service worker active');
+                    }
+                })
+                .catch(function (error) {
+                    // registration failed
+                    console.log('Registration failed with ' + error);
+                });
+        }
+    </script>
   <body>
     <input type="image" class="refresh-button"
           src="https://cdn.glitch.global/0c5eca9e-ad7c-470d-9bb2-68c6f6d4f79b/refresh-50x50.png?v=1642998317976"
          width="20px" height="20px">
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
+    <script type="text/javascript" src="./js/closet.js"></script>
+    <script type="text/javascript" src="./js/sketch.js"></script>   
+    
     <img class="app-icon" 
          width="90px" height="90px" 
          src="/images/maskable-icon.png" 
