@@ -6,6 +6,12 @@ html, body {
 }
 
 canvas {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  max-width: 100%;
+  max-height: 100%;
   display: block;
   overflow: hidden;
   height: 100%
