@@ -22,7 +22,7 @@ function setup () {
   canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent('sketch-holder') // from https://github.com/processing/p5.js/wiki/Positioning-your-canvas
   frameRate(12);
-  // imageMode(CENTER);
+  imageMode(CENTER);
   
   // To simulate temperature changes
   tempSlider = createSlider(0, 100, 20, 1)
@@ -200,9 +200,11 @@ const getDressed = () => {
         // display that piece of clothing
         let w = c.img.width,
             h = c.img.height, 
-            scale = 0.8
+            scale = 0.8,
+            x = width * 0.5 - 50,
+            y = h*scale * 0.5 height * 0.1 + 50
         // image(c.img, -50, 50, w*scale, h*scale)
-        image(c.img, width * 0.5 - 50, height * 0.5 + 50, w*scale, h*scale)
+        image(c.img, x, y, w*scale, h*scale)
         // console.log("outfit: ", c.name, c.image)
       }
     }
