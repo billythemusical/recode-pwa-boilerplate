@@ -20,6 +20,10 @@ canvas {
 
 }
 
+/****************************
+***** Image Scrubber CSS ****
+****************************/
+
 #topBar {
     width: 100%;
     border: 1px solid black;
@@ -39,6 +43,38 @@ canvas {
     min-height: 8vh;
     padding: 0;
 }
+
+/* Hides the "Browse" button */
+input[type="file"] {
+  display: none;
+}
+
+.file-open {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.customFileOpen {
+    cursor: copy;
+}
+
+.controlButton {
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.controlButton:hover,
+.controlButton:focus {
+    background: #ccc;
+}
+
+/* End Image Scrubber CSS */
 
 textarea, 
 input[type="slider"] {
