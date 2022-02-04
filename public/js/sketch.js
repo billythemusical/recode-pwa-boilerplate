@@ -28,18 +28,24 @@ function setup () {
 
   // Setting up our text box
   // weatherInfo = createDiv(temp);
-  weatherInfo = document.getElementById('weather-info')
-  weatherInfo.style("font-family", "Courier");
-  weatherInfo.style("font-size", "15px");
-  weatherInfo.position(20, 20);
+  // weatherInfo.style("font-family", "Courier");
+  // weatherInfo.style("font-size", "15px");
+  // weatherInfo.position(20, 20);
   // weatherInfo.size(windowWidth, windowHeight);
+  
+  const w = document.getElementById('weather-info')
+  weatherInfo = new p5.Element(w)
 
-  // Setting up our temp box
-  bt= createDiv(temp);
-  bt.style("font-family", "Arial");
-  bt.style("font-size", "110px");
-  bt.position(10, 60);
+  // Setting up our big temp box
+  // bt= createDiv(temp);
+  // bt.style("font-family", "Arial");
+  // bt.style("font-size", "110px");
+  // bt.position(10, 60);
   // bt.size(windowWidth, windowHeight);
+  
+  const b = document.getElementById('big-temp')
+  bt = new p5.Element(b)
+  bt.style("font-size", "90px");
 
   // Get the clothes out of the closet
   clothes = closet()
@@ -142,6 +148,7 @@ const displayWeather = async () => {
     info += tempMin + 'º to ' + tempMax + 'º F<br>'
     info += 'Currently ' + temp + 'º F and ' + weather.description
     weatherInfo.html(info) // update the text box
+    // weatherInfo.innerHTML = info // update the text box
     bt.html(temp + 'º') // Uudate big temp display
   }
   
