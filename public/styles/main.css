@@ -21,9 +21,17 @@ canvas {
 
 }
 
+
 /****************************
 ***** Image Scrubber CSS ****
 ****************************/
+
+@media (max-width: 800px) {
+  
+  
+  
+  
+}
 
 #topBar {
     width: 100%;

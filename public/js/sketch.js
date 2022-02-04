@@ -1,5 +1,6 @@
 let dev = true;
 
+let canvas;
 let clothes;
 let outfit;
 let city = "Brooklyn"
@@ -15,8 +16,11 @@ let weatherInfo; // text box
 let bt; // big temp display
 
 function setup () {
+  p5.disableFriendlyErrors = true;
+  
   // Create the canvas
-  createCanvas(windowWidth, windowHeight);
+  canvas = createCanvas(windowWidth, windowHeight);
+  canvas.parent('sketch-holder') // from https://github.com/processing/p5.js/wiki/Positioning-your-canvas
   frameRate(12);
   // imageMode(CENTER);
   
