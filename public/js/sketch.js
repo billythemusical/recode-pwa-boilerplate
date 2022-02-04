@@ -11,7 +11,7 @@ let tempMax = ""
 let tempSlider;
 let weather;
 
-let tb; // text box
+let weatherInfo; // text box
 let bt; // big temp display
 
 function setup () {
@@ -27,11 +27,12 @@ function setup () {
   // tempSlider.elt.addEventListener("touchstart", newTempInput)
 
   // Setting up our text box
-  tb = createDiv(temp);
-  tb.style("font-family", "Courier");
-  tb.style("font-size", "15px");
-  tb.position(20, 20);
-  // tb.size(windowWidth, windowHeight);
+  // weatherInfo = createDiv(temp);
+  weatherInfo = document.getElementById('weather-info')
+  weatherInfo.style("font-family", "Courier");
+  weatherInfo.style("font-size", "15px");
+  weatherInfo.position(20, 20);
+  // weatherInfo.size(windowWidth, windowHeight);
 
   // Setting up our temp box
   bt= createDiv(temp);
@@ -140,7 +141,7 @@ const displayWeather = async () => {
     info += city + '<br>'
     info += tempMin + 'º to ' + tempMax + 'º F<br>'
     info += 'Currently ' + temp + 'º F and ' + weather.description
-    tb.html(info) // update the text box
+    weatherInfo.html(info) // update the text box
     bt.html(temp + 'º') // Uudate big temp display
   }
   
