@@ -41,6 +41,7 @@ body:not(.dragging) #drop-zone {
   
   #topBar {
     grid-template-columns: repeat(1, 1fr);
+    display: flex;
   }
   
   #sketch-holder {
@@ -63,7 +64,6 @@ body:not(.dragging) #drop-zone {
     height: 100%;
     padding: 5px 0;
     border-left: 2px solid #ccc;
-    display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
