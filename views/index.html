@@ -49,14 +49,8 @@
         </svg> -->
     </div>
     <div id="topBar">
-      <div class="topBarDiv">
-        <label for="file-input" class="customFileOpen controlButton"
-               >Add&nbsp;New&nbsp;Clothes&nbsp;📂</label
-        >
-        <input id="file-input" type="file" />
-      </div>
       
-      <div>
+      <div class="topBarDiv controlButton">
         <a
            id="weather-info"
            onclick="refreshWeather(this)"
@@ -66,6 +60,13 @@
         <input type="image" class="refresh-button"
           src="https://cdn.glitch.global/0c5eca9e-ad7c-470d-9bb2-68c6f6d4f79b/refresh-50x50.png?v=1642998317976"
          width="20px" height="20px">
+      </div>
+      
+      <div class="topBarDiv">
+        <label for="file-input" class="customFileOpen controlButton"
+               >Add&nbsp;New&nbsp;Clothes&nbsp;📂</label
+        >
+        <input id="file-input" type="file" />
       </div>
       
       <div id="big-temp" class="topBarDiv controlButton">

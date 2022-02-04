@@ -26,23 +26,11 @@ function setup () {
   tempSlider.elt.oninput = newTempInput
   // tempSlider.elt.addEventListener("touchstart", newTempInput)
 
-  // Setting up our text box
-  // weatherInfo = createDiv(temp);
-  // weatherInfo.style("font-family", "Courier");
-  // weatherInfo.style("font-size", "15px");
-  // weatherInfo.position(20, 20);
-  // weatherInfo.size(windowWidth, windowHeight);
-  
+  // Setting up our weather info box, wrapped in p5
   const w = document.getElementById('weather-info')
   weatherInfo = new p5.Element(w)
 
-  // Setting up our big temp box
-  // bt= createDiv(temp);
-  // bt.style("font-family", "Arial");
-  // bt.style("font-size", "110px");
-  // bt.position(10, 60);
-  // bt.size(windowWidth, windowHeight);
-  
+  // Setting up our big temp box, wrapped in p5
   const b = document.getElementById('big-temp')
   bt = new p5.Element(b)
   bt.style("font-size", "90px");
@@ -144,9 +132,10 @@ const displayWeather = async () => {
   
   if(weather && temp) {
     let info = ''
-    info += city + '<br>'
-    info += tempMin + 'º to ' + tempMax + 'º F<br>'
-    info += 'Currently ' + temp + 'º F and ' + weather.description
+    info += `${city}<br>`
+    info += `L${tempMin}º to H${tempMax }º F<br>`
+    // info += `Currently ${temp}º F<br>`
+    info += `and ${weather.description}`
     weatherInfo.html(info) // update the text box
     // weatherInfo.innerHTML = info // update the text box
     bt.html(temp + 'º') // Uudate big temp display
