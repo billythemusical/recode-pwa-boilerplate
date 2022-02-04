@@ -20,15 +20,14 @@ function setup () {
   
   // Create the canvas
   canvas = createCanvas(windowWidth, windowHeight);
-  console.log(`windowWidth ${windowWidth} windowHeight ${windowHeight}`)
-  console.log(`canvas.width ${canvas.width} canvas.height ${canvas.height}`)
   canvas.parent('sketch-holder') // from https://github.com/processing/p5.js/wiki/Positioning-your-canvas
   frameRate(12);
   imageMode(CENTER);
   
   // To simulate temperature changes
   tempSlider = createSlider(0, 100, 20, 1)
-  tempSlider.position(10, 180)
+  tempSlider.html("Manual&nbsp;Temp&nbsp;🌡")
+  tempSlider.position(10, 10)
   tempSlider.elt.oninput = newTempInput
   // tempSlider.elt.addEventListener("touchstart", newTempInput)
 
@@ -203,8 +202,8 @@ const getDressed = () => {
         let scale = 0.8, 
             w = c.img.width * scale,
             h = c.img.height * scale, 
-            x = 0,
-            y = 0
+            x = windowWidth * 0.5,
+            y = c.img.height * 0.35
         // image(c.img, -50, 50, w, h)
         image(c.img, x, y, w, h)
       }
