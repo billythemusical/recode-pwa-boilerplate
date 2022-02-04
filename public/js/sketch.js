@@ -201,7 +201,8 @@ const getDressed = () => {
         let w = c.img.width,
             h = c.img.height, 
             scale = 0.8
-        image(c.img, -50, 50, w*scale, h*scale)
+        // image(c.img, -50, 50, w*scale, h*scale)
+        image(c.img, width * 0.5 - 50, height * 0.5 + 50, w*scale, h*scale)
         // console.log("outfit: ", c.name, c.image)
       }
     }
