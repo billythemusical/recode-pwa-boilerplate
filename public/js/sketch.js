@@ -20,6 +20,8 @@ function setup () {
   
   // Create the canvas
   canvas = createCanvas(windowWidth, windowHeight);
+  console.log(`windowWidth ${windowWidth} windowHeight ${windowHeight}`)
+  console.log(`canvas.width ${canvas.width} canvas.height ${canvas.height}`)
   canvas.parent('sketch-holder') // from https://github.com/processing/p5.js/wiki/Positioning-your-canvas
   frameRate(12);
   imageMode(CENTER);
@@ -58,7 +60,7 @@ function setup () {
 };
 
 function draw () {
-  background(200);
+  background(255,192,203);
   displayWeather();
   getDressed();
 };
@@ -198,14 +200,13 @@ const getDressed = () => {
       // if the outfit calls for a piece of clothing
       if (outfit.includes(c.name)) {
         // display that piece of clothing
-        let w = c.img.width,
-            h = c.img.height, 
-            scale = 0.8,
-            x = width * 0.5 - 50,
-            y = h*scale * 0.5 height * 0.1 + 50
-        // image(c.img, -50, 50, w*scale, h*scale)
-        image(c.img, x, y, w*scale, h*scale)
-        // console.log("outfit: ", c.name, c.image)
+        let scale = 0.8, 
+            w = c.img.width * scale,
+            h = c.img.height * scale, 
+            x = 0,
+            y = 0
+        // image(c.img, -50, 50, w, h)
+        image(c.img, x, y, w, h)
       }
     }
   }
