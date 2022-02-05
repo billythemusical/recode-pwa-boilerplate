@@ -102,10 +102,6 @@ input[type="file"] {
     background: #ccc;
 }
 
-.slider {
-    width: 90%;
-}
-
 /* End Image Scrubber CSS */
 
 textarea, 
