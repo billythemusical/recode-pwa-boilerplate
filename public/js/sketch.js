@@ -25,9 +25,11 @@ function setup () {
   imageMode(CENTER);
   
   // To simulate temperature changes
+  const t = document.getElementById('slider')
+  tempSlider
   tempSlider = createSlider(0, 100, 20, 1)
   tempSlider.html("Manual&nbsp;Temp&nbsp;🌡")
-  tempSlider.position(10, 10)
+  tempSlider.position()
   tempSlider.elt.oninput = newTempInput
   // tempSlider.elt.addEventListener("touchstart", newTempInput)
 
