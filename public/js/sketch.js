@@ -26,8 +26,9 @@ function setup () {
   
   // To simulate temperature changes
   const t = document.getElementById('slider')
-  tempSlider
-  tempSlider = createSlider(0, 100, 20, 1)
+  tempSlider = new p5.Element(t)
+  tempSlider.parent('slider')
+  // tempSlider = createSlider(0, 100, 20, 1)
   tempSlider.html("Manual&nbsp;Temp&nbsp;🌡")
   tempSlider.position()
   tempSlider.elt.oninput = newTempInput
