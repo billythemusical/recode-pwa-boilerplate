@@ -1,5 +1,6 @@
 html, body {
-  font-family: courier;
+  font-family: Courier;
+  overflow: hidden;
 }
 
 /****************************
