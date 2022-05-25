@@ -33,63 +33,18 @@
                 });
         }
     </script>
-  <body>
-    <div id="drop-zone" style="display: none;">
-       <svg
-            class="icon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 10 10"
-        >
-            <path
-                d="M5,3 l0,4 M3,5 l4,0"
-                fill="none"
-                stroke="#fff"
-                stroke-width="0.5"
-            />
-        </svg>
-    </div>
-    
-    <div id="topBar">
-      
-      <div id="big-temp" class="topBarDiv controlButton">
-        Big&nbsp;Temp&nbsp;Here&nbsp;‼️
-      </div>
-        
-      <div class="topBarDiv controlButton">
-        <a
-           id="weather-info"
-           onclick="refreshWeather(this)"
-           class="topBarDiv controlButton"
-           >Weather&nbsp;Info&nbsp;Here&nbsp;💻</a
-        >
-        <input type="image" class="refresh-button"
-          src="https://cdn.glitch.global/0c5eca9e-ad7c-470d-9bb2-68c6f6d4f79b/refresh-50x50.png?v=1642998317976"
-         width="20px" height="20px">
-      </div>
-
-      
-      <div class="topBarDiv">
-        <label for="file-input" class="customFileOpen controlButton"
-               >Add&nbsp;New&nbsp;Clothes&nbsp;📂</label
-        >
-        <input id="file-input" type="file" />
-      </div>
-      
-    </div>
-  
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
-    <script type="text/javascript" src="./js/closet.js"></script>
-    <script type="text/javascript" src="./js/addImage.js"></script>
-    <script type="text/javascript" src="./js/sketch.js"></script>  
-    
+    <script type="text/javascript" src="./sketch.js"></script>
+
+  <body>
     <div id="sketch-holder">
 
     </div>
-    
-    <img class="app-icon" 
-         width="90px" height="90px" 
-         src="/images/maskable-icon.png" 
-         alt="the app icon, bits of formatted text in a code editor">
+
+    <img class="app-icon"
+         width="90px" height="90px"
+         src="/images/maskable-icon.png"
+         alt="A boilerplate app for a Progressive Web App">
     <button id="add-button">Add to home screen</button>
   </body>
 </html>

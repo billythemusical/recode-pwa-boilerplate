@@ -1,9 +1,9 @@
 {
   "lang": "en",
   "dir": "ltr",
-  "name": "Dress For The Weather",
+  "name": "PWA Boilerplate",
   "short_name": "dev-d4w",
-  "description": "Dress for the weather - we'll help!",
+  "description": "PWA - Boilerplate",
   "start_url": "/",
   "background_color": "rgb(200, 200, 200)",
   "theme-color": "rgb(200, 200, 200)",
@@ -20,5 +20,5 @@
       "type": "image/png"
     }
   ],
-  "id": "dev-d4w"
+  "id": "pwa-bp"
 }
