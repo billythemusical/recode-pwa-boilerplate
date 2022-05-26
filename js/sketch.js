@@ -1,34 +1,16 @@
-let dev = true;
-
-let canvas;
-let clothes;
-let outfit;
-let city = "Brooklyn"
-let loc = {}
-let gotWeather = false
-let temp = "Waiting..."
-let tempMin = ""
-let tempMax = ""
-let tempSlider;
-let weather;
-
-let weatherInfo; // text box
-let bt; // big temp display
 
 function setup () {
   // turns off p5's (rather verbose but) friendly errors
   p5.disableFriendlyErrors = true;
-
   // Create the canvas
-  canvas = createCanvas(windowWidth, windowHeight);
+  canvas = createCanvas(800, 600);
   canvas.parent('sketch-holder') // from https://github.com/processing/p5.js/wiki/Positioning-your-canvas
-
 };
 
 function draw () {
   background(220);
-
-};
+  text('this is your canvas', 100, 100)
+}
 
 function windowResized () {
   resizeCanvas(windowWidth, windowHeight);
