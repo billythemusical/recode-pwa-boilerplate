@@ -1,25 +1,24 @@
 {
-  "lang": "en",
-  "dir": "ltr",
-  "name": "Dress For The Weather",
-  "short_name": "dev-d4w",
-  "description": "Dress for the weather - we'll help!",
-  "start_url": "/",
-  "scope": "./",
-  "background_color": "rgb(200, 200, 200)",
-  "theme-color": "#c8c8c8",
-  "display": "fullscreen",
-  "icons": [
-    {
-      "src": "/images/maskable-icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/maskable-icon.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    }
-  ],
-  "id": "dev-d4w"
+    "lang": "en",
+    "dir": "ltr",
+    "name": "ReCode PWA Boilerplate",
+    "short_name": "recode",
+    "description": "A p5 PWA Boilerplate app!",
+    "start_url": "/",
+    "background_color": "rgb(255,192,203)",
+    "theme-color": "#c8c8c8",
+    "display": "fullscreen",
+    "icons": [
+        {
+            "src": "/images/recode-icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/recode-icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "id": "recode"
 }
