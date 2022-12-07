@@ -1,3 +1,4 @@
+var canvas;
 
 function setup () {
   // turns off p5's (rather verbose but) friendly errors
@@ -9,7 +10,7 @@ function setup () {
 
 function draw () {
   background(220);
-  text('this is your canvas', 100, 100)
+  text('THIS IS YOUR CANVAS', 100, 100)
 }
 
 function windowResized () {
