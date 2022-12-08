@@ -10,7 +10,9 @@ function setup () {
 
 function draw () {
   background(220);
-  text('THIS IS YOUR CANVAS', 100, 100)
+  text('This is a p5 canvas; do with it what you will.', 100, 100)
+  text('To install this web app, click the install button in the URL window.', 100, 120)
+  text('(Remember to only use Chrome...)', 100, 140)
 }
 
 function windowResized () {

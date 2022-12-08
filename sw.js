@@ -13,7 +13,7 @@ self.addEventListener("install", (e) => {
 // Here the service worker will intervene before the 
 // browser goes looking on the web.
 self.addEventListener("fetch", (e) => {
-  console.log(e.request.url); // this will show the SW is working
+  // console.log(e.request.url); // this will show the SW is working
   e.respondWith(
     caches.match(e.request)
     .then((response) => response || fetch(e.request))
@@ -40,3 +40,4 @@ self.addEventListener("activate", function (event) {
       .then(() => self.clients.claim())
   );
 });
+
