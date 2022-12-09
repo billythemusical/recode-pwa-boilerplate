@@ -11,32 +11,28 @@
     <link rel="manifest" href="./manifest.json">
     <base href="./">
 
+    <script type="text/javascript" src="./a2hs-installer.js"></script>
     <script type="text/javascript" src="./p5.min.js"></script>
     <script type="text/javascript" src="./sketch.js"></script>
 
   </head>
 
   <body>
-    <script>
-      // register service worker
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker
-            .register('./sw.js')
-            .then(function (reg) {
-              if (reg.installing) {
-                console.log('Service worker installing');
-              } else if (reg.waiting) {
-                console.log('Service worker installed');
-              } else if (reg.active) {
-                console.log('Service worker active');
-              }
-            })
-            .catch(function (error) {
-              // registration failed
-              console.log('Registration failed with ' + error);
-            });
-        }
-    </script>
-      <div id="sketch-holder"></div>
+    
+        <div id="app">
+          <div id="installer">
+            <div class="app-icon">
+              <img width="90px" height="90px" src="./images/apple-touch-icon.png"
+                alt="An app icon featuring a retro computer on a Vapor Wave landscape.">
+            </div>
+            <div>
+              <input id="a2hs-button" value="Install this app!" type="button"></input>
+            </div>
+
+            <div id="sketch-holder"></div>
+          </div>
+          
+        </div>
+
   </body>
 </html>

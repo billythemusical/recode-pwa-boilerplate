@@ -41,3 +41,8 @@ self.addEventListener("activate", function (event) {
   );
 });
 
+
+// 
+self.addEventListener('message', messageEvent => {
+if (messageEvent.data === 'skipWaiting') return skipWaiting();
+});
